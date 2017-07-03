@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+		  <ui:composition template="/WEB-INF/facelets/template.xhtml">	
+		 
+		 	<ui:define name="body">	
+				<f:view>
+					<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+					<p:dialog modal="true" widgetVar="statusDialog" header="Loading"  draggable="false" closable="false">  
+   						<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+					</p:dialog>
+					
+					<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Expired session"  draggable="false" closable="false">  
+	   					<h:outputText value="The session is finished" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Sign in"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+					
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableFactura" header="FacturaData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{facturaView.data}" var="factura"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{factura.idFactura}" sortBy="#{factura.idFactura}" >
+										 <f:facet name="header">
+										<h:outputText value="idFactura"/>
+										</f:facet>
+										 <h:outputText value="#{factura.idFactura}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{factura.estadoPago}" sortBy="#{factura.estadoPago}" >
+										 <f:facet name="header">
+										<h:outputText value="EstadoPago"/>
+										</f:facet>
+										 <h:outputText value="#{factura.estadoPago}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{factura.metodoPago}" sortBy="#{factura.metodoPago}" >
+										 <f:facet name="header">
+										<h:outputText value="MetodoPago"/>
+										</f:facet>
+										 <h:outputText value="#{factura.metodoPago}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{factura.valorTotal}" sortBy="#{factura.valorTotal}" >
+										 <f:facet name="header">
+										<h:outputText value="ValorTotal"/>
+										</f:facet>
+										 <h:outputText value="#{factura.valorTotal}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{factura.idReserva_Reserva}" sortBy="#{factura.idReserva_Reserva}" >
+										 <f:facet name="header">
+										<h:outputText value="IdReserva_Reserva"/>
+										</f:facet>
+										 <h:outputText value="#{factura.idReserva_Reserva}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogFactura"
+										actionListener="#{facturaView.action_edit}">
+										<f:attribute name="selectedFactura" value="#{factura}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{facturaView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedFactura" value="#{factura}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{facturaView.action_new()}" update=":dialogFactura" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogFactura" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{facturaView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelFactura" header="Factura">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgIdFactura" value="IdFactura"/>
+									 <p:inputText id="txtIdFactura" binding="#{facturaView.txtIdFactura}">
+									 <p:ajax update=":dialogFactura" listener="#{facturaView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgEstadoPago" value=" EstadoPago"/>
+									<p:inputText id="txtEstadoPago" disabled="true" binding="#{facturaView.txtEstadoPago}"/>
+																		<h:outputText id="msgMetodoPago" value=" MetodoPago"/>
+									<p:inputText id="txtMetodoPago" disabled="true" binding="#{facturaView.txtMetodoPago}"/>
+																		<h:outputText id="msgValorTotal" value=" ValorTotal"/>
+									<p:inputText id="txtValorTotal" disabled="true" binding="#{facturaView.txtValorTotal}"/>
+																		<h:outputText id="msgIdReserva_Reserva" value=" IdReserva_Reserva"/>
+									<p:inputText id="txtIdReserva_Reserva" disabled="true" binding="#{facturaView.txtIdReserva_Reserva}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{facturaView.btnSave}" value="Save" action="#{facturaView.action_save()}" update=":dialogFactura :frm:panelDataTableFactura" />
+									<p:commandButton id="btnClear" value="Clear" action="#{facturaView.action_clear()}" update=":dialogFactura" />
+									<p:commandButton id="btnExit" value="Exit" action="#{facturaView.action_closeDialog()}" update=":dialogFactura" />
+								</div>
+							</p:panel>					
+						</h:form>
+					</p:dialog>
+				</f:view>
+			</ui:define>		
+		</ui:composition>	
+	</h:body>	
+</html>	

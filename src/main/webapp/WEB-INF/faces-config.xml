@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+    <application>
+      <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>	
+	
+  
+            <navigation-rule>
+            <from-view-id>/XHTML/establecimiento.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/establecimientoListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/establecimientoListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goEstablecimiento</from-outcome>
+                <to-view-id>/XHTML/establecimiento.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goEstablecimientoListDataTable</from-outcome>
+                <to-view-id>/XHTML/establecimientoListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goEstablecimientoListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/establecimientoListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/factura.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/facturaListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/facturaListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goFactura</from-outcome>
+                <to-view-id>/XHTML/factura.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goFacturaListDataTable</from-outcome>
+                <to-view-id>/XHTML/facturaListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goFacturaListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/facturaListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/menu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/menuListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/menuListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMenu</from-outcome>
+                <to-view-id>/XHTML/menu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMenuListDataTable</from-outcome>
+                <to-view-id>/XHTML/menuListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMenuListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/menuListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/mesa.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/mesaListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/mesaListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMesa</from-outcome>
+                <to-view-id>/XHTML/mesa.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMesaListDataTable</from-outcome>
+                <to-view-id>/XHTML/mesaListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goMesaListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/mesaListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/reserva.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/reservaListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/reservaListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goReserva</from-outcome>
+                <to-view-id>/XHTML/reserva.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goReservaListDataTable</from-outcome>
+                <to-view-id>/XHTML/reservaListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goReservaListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/reservaListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/rol.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/rolListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/rolListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goRol</from-outcome>
+                <to-view-id>/XHTML/rol.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goRolListDataTable</from-outcome>
+                <to-view-id>/XHTML/rolListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goRolListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/rolListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+            <navigation-rule>
+            <from-view-id>/XHTML/usuario.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/usuarioListDataTable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/usuarioListDataTableEditable.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goInitialMenu</from-outcome>
+                <to-view-id>/XHTML/initialMenu.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goUsuario</from-outcome>
+                <to-view-id>/XHTML/usuario.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goUsuarioListDataTable</from-outcome>
+                <to-view-id>/XHTML/usuarioListDataTable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/XHTML/initialMenu.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>goUsuarioListDataTableEditable</from-outcome>
+                <to-view-id>/XHTML/usuarioListDataTableEditable.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+    </faces-config>

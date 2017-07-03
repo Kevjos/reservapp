@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/07/2017 09:17:23 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.reservapp.entrega.modelo.Menu" table="menu" catalog="reservapp" optimistic-lock="version">
+        <id name="idMenu" type="java.lang.Integer">
+            <column name="idMenu" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="establecimiento" class="com.reservapp.entrega.modelo.Establecimiento" fetch="select">
+            <column name="Establecimiento_idEstablecimiento" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="precio" type="java.lang.Integer">
+            <column name="Precio" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="Descripcion" length="45" />
+        </property>
+        <property name="imagen" type="java.lang.String">
+            <column name="Imagen" length="45" />
+        </property>
+        <set name="reservas" table="reserva_has_menu" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Menu_idMenu" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.reservapp.entrega.modelo.Reserva">
+                <column name="Reserva_idReserva" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

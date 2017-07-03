@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+		  <ui:composition template="/WEB-INF/facelets/template.xhtml">	
+		 
+		 	<ui:define name="body">	
+				<f:view>
+					<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+					<p:dialog modal="true" widgetVar="statusDialog" header="Loading"  draggable="false" closable="false">  
+   						<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+					</p:dialog>
+					
+					<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Expired session"  draggable="false" closable="false">  
+	   					<h:outputText value="The session is finished" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Sign in"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+					
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableEstablecimiento" header="EstablecimientoData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{establecimientoView.data}" var="establecimiento"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{establecimiento.idEstablecimiento}" sortBy="#{establecimiento.idEstablecimiento}" >
+										 <f:facet name="header">
+										<h:outputText value="idEstablecimiento"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.idEstablecimiento}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{establecimiento.correo}" sortBy="#{establecimiento.correo}" >
+										 <f:facet name="header">
+										<h:outputText value="Correo"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.correo}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.direccion}" sortBy="#{establecimiento.direccion}" >
+										 <f:facet name="header">
+										<h:outputText value="Direccion"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.direccion}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.latitud}" sortBy="#{establecimiento.latitud}" >
+										 <f:facet name="header">
+										<h:outputText value="Latitud"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.latitud}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.longitud}" sortBy="#{establecimiento.longitud}" >
+										 <f:facet name="header">
+										<h:outputText value="Longitud"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.longitud}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.mesas}" sortBy="#{establecimiento.mesas}" >
+										 <f:facet name="header">
+										<h:outputText value="Mesas"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.mesas}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.nit}" sortBy="#{establecimiento.nit}" >
+										 <f:facet name="header">
+										<h:outputText value="Nit"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.nit}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.nombre}" sortBy="#{establecimiento.nombre}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombre"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.nombre}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{establecimiento.telefono}" sortBy="#{establecimiento.telefono}" >
+										 <f:facet name="header">
+										<h:outputText value="Telefono"/>
+										</f:facet>
+										 <h:outputText value="#{establecimiento.telefono}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogEstablecimiento"
+										actionListener="#{establecimientoView.action_edit}">
+										<f:attribute name="selectedEstablecimiento" value="#{establecimiento}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{establecimientoView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedEstablecimiento" value="#{establecimiento}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{establecimientoView.action_new()}" update=":dialogEstablecimiento" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogEstablecimiento" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{establecimientoView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelEstablecimiento" header="Establecimiento">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgIdEstablecimiento" value="IdEstablecimiento"/>
+									 <p:inputText id="txtIdEstablecimiento" binding="#{establecimientoView.txtIdEstablecimiento}">
+									 <p:ajax update=":dialogEstablecimiento" listener="#{establecimientoView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgCorreo" value=" Correo"/>
+									<p:inputText id="txtCorreo" disabled="true" binding="#{establecimientoView.txtCorreo}"/>
+																		<h:outputText id="msgDireccion" value=" Direccion"/>
+									<p:inputText id="txtDireccion" disabled="true" binding="#{establecimientoView.txtDireccion}"/>
+																		<h:outputText id="msgLatitud" value=" Latitud"/>
+									<p:inputText id="txtLatitud" disabled="true" binding="#{establecimientoView.txtLatitud}"/>
+																		<h:outputText id="msgLongitud" value=" Longitud"/>
+									<p:inputText id="txtLongitud" disabled="true" binding="#{establecimientoView.txtLongitud}"/>
+																		<h:outputText id="msgMesas" value=" Mesas"/>
+									<p:inputText id="txtMesas" disabled="true" binding="#{establecimientoView.txtMesas}"/>
+																		<h:outputText id="msgNit" value=" Nit"/>
+									<p:inputText id="txtNit" disabled="true" binding="#{establecimientoView.txtNit}"/>
+																		<h:outputText id="msgNombre" value=" Nombre"/>
+									<p:inputText id="txtNombre" disabled="true" binding="#{establecimientoView.txtNombre}"/>
+																		<h:outputText id="msgTelefono" value=" Telefono"/>
+									<p:inputText id="txtTelefono" disabled="true" binding="#{establecimientoView.txtTelefono}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{establecimientoView.btnSave}" value="Save" action="#{establecimientoView.action_save()}" update=":dialogEstablecimiento :frm:panelDataTableEstablecimiento" />
+									<p:commandButton id="btnClear" value="Clear" action="#{establecimientoView.action_clear()}" update=":dialogEstablecimiento" />
+									<p:commandButton id="btnExit" value="Exit" action="#{establecimientoView.action_closeDialog()}" update=":dialogEstablecimiento" />
+								</div>
+							</p:panel>					
+						</h:form>
+					</p:dialog>
+				</f:view>
+			</ui:define>		
+		</ui:composition>	
+	</h:body>	
+</html>	

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/07/2017 09:17:23 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.reservapp.entrega.modelo.Reserva" table="reserva" catalog="reservapp" optimistic-lock="version">
+        <id name="idReserva" type="java.lang.Integer">
+            <column name="idReserva" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="mesa" class="com.reservapp.entrega.modelo.Mesa" fetch="select">
+            <column name="Mesa_idMesa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.reservapp.entrega.modelo.Usuario" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="fechaReserva" type="java.util.Date">
+            <column name="`Fecha Reserva`" length="10" />
+        </property>
+        <property name="idMesa" type="java.lang.Integer">
+            <column name="IdMesa" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Reserva_idReserva" not-null="true" />
+            </key>
+            <one-to-many class="com.reservapp.entrega.modelo.Factura" />
+        </set>
+        <set name="menus" table="reserva_has_menu" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Reserva_idReserva" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.reservapp.entrega.modelo.Menu">
+                <column name="Menu_idMenu" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
